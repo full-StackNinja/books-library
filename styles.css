@@ -1,0 +1,20 @@
+* {
+     font-family: system-ui;
+     font-size: 1rem;
+     box-sizing: border-box;
+}
+body{
+     padding: 25px;
+}
+
+.book-display{
+     padding: 20px;
+     margin: auto;
+     border-left: 5px solid #c2410c;
+     border-top: 1px solid #ccc;
+     border-bottom: 1px solid #ccc;
+     border-right: 1px solid #ccc;
+     border-radius: 8px;
+
+
+}
