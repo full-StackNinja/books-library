@@ -8,24 +8,24 @@
           <script src="./libraryApp.js" defer></script>
      </head>
      <body>
-          <button class="add-book-button">Add Book</button>
+           <button class="add-book-button">Add Book</button>
+           <h1>Books Library</h1>
           <div class="books-container">
-               
           </div>
           <div class="form-container">
-               <form action="">
+               <form action="" id="book-form">
                     <ol>
                          <li>
                               <label for="title">Book Title:</label>
-                              <input type="text" id="book-title" name="title" autocomplete="off" />
+                              <input type="text" id="book-title" name="title" autocomplete="off" required/>
                          </li>
                          <li>
                               <label for="author">Author Name:</label>
-                              <input type="text" id="book-author" name="author" autocomplete="off" />
+                              <input type="text" id="book-author" name="author" autocomplete="off" required />
                          </li>
                          <li>
                               <label for="pages"> Total Pages?</label>
-                              <input type="number" id="book-pages" name="pages" autocomplete="off" />
+                              <input type="number" id="book-pages" name="pages" autocomplete="off" required/>
                          </li>
                          <fieldset>
                               <legend>Have you read this book?</legend>
@@ -47,5 +47,4 @@
                     </div>
                </form>
           </div>
-     </body>
 </html>
