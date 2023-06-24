@@ -12,7 +12,7 @@ body {
 }
 
 h1 {
-     position: fixed;
+     position: absolute;
      top: 50px;
      left: 100px;
      font-size: 2.5rem;
@@ -51,7 +51,7 @@ h1 {
 .one-book-data {
      display: grid;
      gap: 5px;
-     grid-template-columns: 1fr 100px 120px;
+     grid-template-columns: 1fr 120px 120px;
 }
 
 .remove-book {
@@ -65,7 +65,6 @@ h1 {
 .read-status {
      display: inline-block;
      padding: 5px 10px;
-     /* background-color: #0f766e; */
      color: #f8fafc;
      border-radius: 5px;
 }
@@ -78,7 +77,7 @@ h1 {
 .add-book-button {
      display: block;
      border: none;
-     margin: 20px auto;
+     margin: 100px auto 20px auto;
      height: 45px;
      padding: 0 24px;
      font-size: 1.3rem;
@@ -183,6 +182,7 @@ button[type="reset"]:active {
      height: 100%;
      z-index: -1;
      opacity: 0;
+     pointer-events: none;
      transition: opacity 0.5s cubic-bezier(0.2, 1, 0.8, 1);
 }
 
@@ -191,7 +191,13 @@ button[type="reset"]:active {
      left: 0;
      width: 100%;
      height: 100%;
-     opacity: 0.9;
+     opacity: 0.95;
      z-index: 1;
+     pointer-events: all;
      background-color: rgb(0, 0, 0);
 }
+
+span, img{
+     pointer-events: none;;
+}
+

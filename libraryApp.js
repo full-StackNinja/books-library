@@ -12,32 +12,52 @@ const Book = function (title, author, pages, isRead) {
      this.pages = pages;
      this.isRead = isRead;
 };
-
-Book.prototype.addBookToPage = function (bookIndex) {
-     let oneBookData = document.createElement("div");
-     let newBook = document.createElement("p");
-     let removeBook = document.createElement("button");
+const oneBookData = function (readStatus, bookIndex) {
      let toggleReadStatus = document.createElement("button");
-     if (this.isRead === "yes") {
-          newBook.textContent = `${this.title} by ${this.author}, total pages ${this.pages}`;
-          toggleReadStatus.textContent = "Read";
+     let readText = document.createElement("span");
+     let readTick = document.createElement("img");
+     if (readStatus === "yes") {
+          readText.textContent = "Read";
+          readTick.src = "./icons/done-tick.svg";
+          readTick.style.width = "22px";
+          toggleReadStatus.style.display = "inline-flex";
+          toggleReadStatus.style.alignItems = "center";
+          toggleReadStatus.style.justifyContent = "space-between";
+          toggleReadStatus.append(readText);
+          toggleReadStatus.append(readTick);
+          toggleReadStatus.setAttribute("data-read-status", "yes");
           toggleReadStatus.style.backgroundColor = "#0f766e";
-     } else {
-          newBook.textContent = `${this.title} by ${this.author}, total pages ${this.pages}`;
-          toggleReadStatus.textContent = "Unread";
+     } else if (readStatus == "no") {
+          readText.textContent = "Unread";
+          readTick.src = "./icons/cross-icon.svg";
+          readTick.style.width = "22px";
+          toggleReadStatus.style.display = "inline-flex";
+          toggleReadStatus.style.alignItems = "center";
+          toggleReadStatus.style.justifyContent = "space-between";
+          toggleReadStatus.append(readText);
+          toggleReadStatus.append(readTick);
           toggleReadStatus.style.backgroundColor = "#7f1d1d";
+          toggleReadStatus.setAttribute("data-read-status", "no");
      }
-     oneBookData.classList.add("one-book-data");
-     oneBookData.setAttribute("data-index", bookIndex);
      toggleReadStatus.classList.add("read-status");
      toggleReadStatus.setAttribute("data-index", bookIndex);
+     return toggleReadStatus;
+};
+
+Book.prototype.addBookToPage = function (bookIndex) {
+     let newBook = document.createElement("p");
+     let oneBookContainer = document.createElement("div");
+     let removeBook = document.createElement("button");
+     newBook.textContent = `${this.title} by ${this.author}, total pages ${this.pages}`;
+     oneBookContainer.classList.add("one-book-data");
+     oneBookContainer.setAttribute("data-index", bookIndex);
      removeBook.textContent = "Remove";
      removeBook.classList.add("remove-book");
      removeBook.setAttribute("data-index", bookIndex);
-     oneBookData.append(newBook);
-     oneBookData.append(toggleReadStatus);
-     oneBookData.append(removeBook);
-     booksContainer.append(oneBookData);
+     oneBookContainer.appendChild(newBook);
+     oneBookContainer.append(oneBookData(this.isRead, bookIndex));
+     oneBookContainer.append(removeBook);
+     booksContainer.append(oneBookContainer);
 };
 
 Book.prototype.addBookToLibrary = function () {
@@ -53,7 +73,6 @@ Book.prototype.addBookToLibrary = function () {
           myBooks.push(this);
           this.addBookToPage(myBooks.length - 1);
      }
-     console.log(myBooks);
 };
 
 addBookButton.addEventListener("click", () => {
@@ -61,11 +80,8 @@ addBookButton.addEventListener("click", () => {
 });
 
 submitButton.addEventListener("click", (event) => {
-     if ((form.elements.title.value === "") || (form.elements.author.value === "") ||
-          (form.elements.pages.value === "")) {
-          
-     }
-     else {
+     if (form.elements.title.value === "" || form.elements.author.value === "" || form.elements.pages.value === "") {
+     } else {
           event.preventDefault();
           let book = new Book();
           book.addBookToLibrary();
@@ -79,16 +95,22 @@ cancelButton.addEventListener("click", () => {
 });
 
 booksContainer.addEventListener("click", (event) => {
-     if (event.target.classList[0] === "remove-book") {
-          myBooks[Number(event.target.dataset["index"])] = undefined;
+     console.log(event.target)
+     let currentBookIndex = Number(event.target.dataset["index"]);
+     let currentBookReadStatus = event.target.dataset["readStatus"];
+     let currentReadButton = document.querySelector(`.read-status[data-index=\"${currentBookIndex}\"]`);
+     let updatedReadButton;
+     let currentEventClass = event.target.classList[0];
+     if (currentEventClass === "remove-book") {
+          myBooks[currentBookIndex] = undefined;
           event.target.parentNode.remove();
-     } else if (event.target.classList[0] === "read-status") {
-          if (event.target.innerHTML === "Read") {
-               event.target.innerHTML = "Unread";
-               event.target.style.backgroundColor = "#7f1d1d";
-          } else if (event.target.innerHTML === "Unread") {
-               event.target.innerHTML = "Read";
-               event.target.style.backgroundColor = "#0f766e";
+     } else if (currentEventClass === "read-status") {
+          if (currentBookReadStatus === "yes") {
+               currentBookReadStatus = "no";
+          } else if (currentBookReadStatus === "no") {
+               currentBookReadStatus = "yes";
           }
+          updatedReadButton = oneBookData(currentBookReadStatus, currentBookIndex);
+          currentReadButton.replaceWith(updatedReadButton);
      }
 });
