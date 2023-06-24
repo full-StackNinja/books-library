@@ -1,17 +1,17 @@
 * {
-    font-family: system-ui;
-    font-size: 1.1rem;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+     font-family: system-ui;
+     font-size: 1.1rem;
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
 }
 
 body {
-    padding: 50px 200px;
-    position: relative;
+     padding: 50px 200px;
+     position: relative;
 }
 
-h1{
+h1 {
      position: fixed;
      top: 50px;
      left: 100px;
@@ -20,174 +20,178 @@ h1{
 }
 
 :root {
-    --text-color-slate: #f1f5f9;
-    --background-color-cyan: #083344;
-    --background-color-slate-dark: #475569;
+     --text-color-slate: #f1f5f9;
+     --background-color-cyan: #083344;
+     --background-color-slate-dark: #475569;
 }
 
 .books-container {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    border-left: 5px solid #7f1d1d;
-    padding: 0 20px;
-    counter-reset: books-counter;
+     display: flex;
+     flex-direction: column;
+     gap: 5px;
+     border-left: 5px solid #7f1d1d;
+     padding: 0 20px;
+     counter-reset: books-counter;
 }
 
 .books-container p {
-    font-style: italic;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    color: var(--text-color-slate);
-    background-color: var(--background-color-cyan);
+     font-style: italic;
+     padding: 5px 10px;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     color: var(--text-color-slate);
+     background-color: var(--background-color-cyan);
 }
 
 .books-container p::before {
-    counter-increment: books-counter;
-    content: counter(books-counter) ". ";
+     counter-increment: books-counter;
+     content: counter(books-counter) ". ";
 }
 
-.one-book-data{
-    display: grid;
-    gap: 5px;
-    grid-template-columns: 1fr 100px 120px;
+.one-book-data {
+     display: grid;
+     gap: 5px;
+     grid-template-columns: 1fr 100px 120px;
 }
 
-.remove-book{
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #4b5563;
-    color: #f8fafc;
-    border-radius: 5px;
+.remove-book {
+     display: inline-block;
+     padding: 5px 10px;
+     background-color: #4b5563;
+     color: #f8fafc;
+     border-radius: 5px;
 }
 
-.read-status{
-    display: inline-block;
-    padding: 5px 10px;
-    /* background-color: #0f766e; */
-    color: #f8fafc;
-    border-radius: 5px;
+.read-status {
+     display: inline-block;
+     padding: 5px 10px;
+     /* background-color: #0f766e; */
+     color: #f8fafc;
+     border-radius: 5px;
 }
 
-.remove-book:active{
-    outline: none;
-    box-shadow: 0 0 0 2px #22d3ee;
+.remove-book:active {
+     outline: none;
+     box-shadow: 0 0 0 2px #22d3ee;
 }
 
 .add-book-button {
-    display: block;
-    border: none;
-    margin: 20px auto;
-    height: 45px;
-    padding: 0 24px;
-    font-size: 1.3rem;
-    font-weight: 700;
-    border-radius: 8px;
-    color: var(--text-color-slate);
-    background-color: var(--background-color-slate-dark);
+     display: block;
+     border: none;
+     margin: 20px auto;
+     height: 45px;
+     padding: 0 24px;
+     font-size: 1.3rem;
+     font-weight: 700;
+     border-radius: 8px;
+     color: var(--text-color-slate);
+     background-color: var(--background-color-slate-dark);
 }
 
 @keyframes button-shadow {
-    from {
-         box-shadow: 0 0 0 3px #22d3ee;
-    }
-    to {
-         box-shadow: none;
-    }
+     from {
+          box-shadow: 0 0 0 3px #22d3ee;
+     }
+     to {
+          box-shadow: none;
+     }
 }
 
 .add-book-button:active {
-    animation-name: button-shadow;
-    animation-duration: 1s;
+     animation-name: button-shadow;
+     animation-duration: 1s;
 }
 
 form {
-    width: 50%;
-    left: calc((25%));
-    top: 120px;
-    position: absolute;
-    padding: 50px;
-    z-index:1;
-    background-color: #ccc;
-    border-radius: 8px;
+     width: 50%;
+     left: calc((25%));
+     top: 120px;
+     position: absolute;
+     padding: 50px;
+     z-index: 1;
+     background-color: #ccc;
+     border-radius: 8px;
 }
 
 ol {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+     list-style-type: none;
+     margin: 0;
+     padding: 0;
 }
 
 li {
-    margin-bottom: 16px;
+     margin-bottom: 16px;
 }
 
 label {
-    display: inline-block;
-    font-size: 1rem;
-    width: 120px;
+     display: inline-block;
+     font-size: 1rem;
+     width: 120px;
 }
 
 input:not([type="radio"]) {
-    width: calc(100% - 125px);
-    padding: 5px 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+     width: calc(100% - 125px);
+     padding: 5px 10px;
+     border-radius: 8px;
+     border: 1px solid #ccc;
 }
 
 fieldset {
-    padding: 20px;
-    /* border: 1px solid #ccc; */
-    border-radius: 8px;
-    margin-bottom: 30px;
+     padding: 20px;
+     /* border: 1px solid #ccc; */
+     border-radius: 8px;
+     margin-bottom: 30px;
 }
 
 input[type="radio"] {
-    accent-color: green;
+     accent-color: green;
 }
 
 button[type="submit"] {
-    padding: 10px 24px;
-    border-radius: 8px;
-    border: 1px solid #475569;
-    background-color: #22d3ee;
+     padding: 10px 24px;
+     border-radius: 8px;
+     border: 1px solid #475569;
+     background-color: #22d3ee;
 }
 
-button[type="submit"]:active{
-    box-shadow: 0 0 0 1px #475569;
+button[type="submit"]:active {
+     box-shadow: 0 0 0 1px #475569;
 }
 
 button[type="reset"] {
-    padding: 10px 24px;
-    border-radius: 8px;
-    border: 1px solid #475569;
-    background-color: #334155;
-    color: #f1f5f9;
+     padding: 10px 24px;
+     border-radius: 8px;
+     border: 1px solid #475569;
+     background-color: #334155;
+     color: #f1f5f9;
 }
 
-button[type="reset"]:active{
-    box-shadow: 0 0 0 1px #22d3ee;
+button[type="reset"]:active {
+     box-shadow: 0 0 0 1px #22d3ee;
 }
 
-.buttons{
-    display: flex;
-    justify-content: space-between;
+.buttons {
+     display: flex;
+     justify-content: space-between;
 }
 
 .form-container {
-    position: fixed;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 1s cubic-bezier(0.2, 1, 0.8, 1);
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     z-index: -1;
+     opacity: 0;
+     transition: opacity 0.5s cubic-bezier(0.2, 1, 0.8, 1);
 }
 
 #form-container {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.95;
-    z-index: 1;
-    background-color: rgb(0, 0, 0);
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     opacity: 0.9;
+     z-index: 1;
+     background-color: rgb(0, 0, 0);
 }
