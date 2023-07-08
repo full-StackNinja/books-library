@@ -58,6 +58,7 @@ h1 {
      overflow-x: auto;
      overflow-y: hidden;
      white-space: nowrap;
+     scrollbar-width: none;
 }
 
 .one-book-data p::-webkit-scrollbar{
