@@ -7,18 +7,8 @@ const form = document.querySelector("form");
 const booksContainer = document.querySelector(".books-container");
 
 const myBooks = [];
-<<<<<<< HEAD
-// Constructor function for book objects...
-const Book = function (title, author, pages, isRead) {
-     this.title = title;
-     this.author = author;
-     this.pages = pages;
-     this.isRead = isRead;
-};
-// function to maintain read status, coloring and UI for each new book being added...
-=======
-// class for book objects...
 
+// class for book objects...
 class Book {
      constructor(title, author, pages, isRead) {
           this.title = title;
@@ -57,7 +47,6 @@ class Book {
      };
 }
 
->>>>>>> usingClasses
 const oneBookData = function (readStatus, bookIndex) {
      let toggleReadStatus = document.createElement("button");
      let readText = document.createElement("span");
@@ -85,42 +74,6 @@ const oneBookData = function (readStatus, bookIndex) {
      return toggleReadStatus;
 };
 
-<<<<<<< HEAD
-// Add new book to page...
-Book.prototype.addBookToPage = function (bookIndex) {
-     let newBook = document.createElement("p");
-     let oneBookContainer = document.createElement("div");
-     let removeBook = document.createElement("button");
-     newBook.textContent = `${this.title} by ${this.author}, total pages ${this.pages}`;
-     oneBookContainer.classList.add("one-book-data");
-     oneBookContainer.setAttribute("data-index", bookIndex);
-     removeBook.textContent = "Remove";
-     removeBook.classList.add("remove-book");
-     removeBook.setAttribute("data-index", bookIndex);
-     oneBookContainer.appendChild(newBook);
-     oneBookContainer.append(oneBookData(this.isRead, bookIndex));
-     oneBookContainer.append(removeBook);
-     booksContainer.append(oneBookContainer);
-};
-// Add new book to library...
-Book.prototype.addBookToLibrary = function () {
-     this.title = form.elements.title.value;
-     this.author = form.elements.author.value;
-     this.pages = form.elements.pages.value;
-     this.isRead = form.elements["book-read"].value;
-     let undefinedIndex = myBooks.indexOf(undefined);
-     if (undefinedIndex !== -1) {
-          myBooks[undefinedIndex] = this;
-          this.addBookToPage(undefinedIndex);
-     } else {
-          myBooks.push(this);
-          this.addBookToPage(myBooks.length - 1);
-     }
-};
-
-// pop up book form on add book button click...
-=======
->>>>>>> usingClasses
 addBookButton.addEventListener("click", () => {
      formContainer.setAttribute("id", "form-container");
 });
