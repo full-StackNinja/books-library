@@ -14,7 +14,7 @@ const Book = function (title, author, pages, isRead) {
      this.pages = pages;
      this.isRead = isRead;
 };
-
+// function to maintain read status, coloring and UI for each new book being added...
 const oneBookData = function (readStatus, bookIndex) {
      let toggleReadStatus = document.createElement("button");
      let readText = document.createElement("span");
@@ -42,6 +42,7 @@ const oneBookData = function (readStatus, bookIndex) {
      return toggleReadStatus;
 };
 
+// Add new book to page...
 Book.prototype.addBookToPage = function (bookIndex) {
      let newBook = document.createElement("p");
      let oneBookContainer = document.createElement("div");
@@ -57,7 +58,7 @@ Book.prototype.addBookToPage = function (bookIndex) {
      oneBookContainer.append(removeBook);
      booksContainer.append(oneBookContainer);
 };
-
+// Add new book to library...
 Book.prototype.addBookToLibrary = function () {
      this.title = form.elements.title.value;
      this.author = form.elements.author.value;
@@ -73,11 +74,14 @@ Book.prototype.addBookToLibrary = function () {
      }
 };
 
+// pop up book form on add book button click...
 addBookButton.addEventListener("click", () => {
      formContainer.setAttribute("id", "form-container");
 });
 
+// Submit book data form after filling it out. But prevent default behaviour of the submit button...
 submitButton.addEventListener("click", (event) => {
+     // do nothing on button click if any of the form field is missing...
      if (form.elements.title.value === "" || form.elements.author.value === "" || form.elements.pages.value === "") {
      } else {
           event.preventDefault();
@@ -88,12 +92,13 @@ submitButton.addEventListener("click", (event) => {
      }
 });
 
+// Cancel out adding book data...
 cancelButton.addEventListener("click", () => {
      formContainer.removeAttribute("id", "form-container");
 });
 
 booksContainer.addEventListener("click", (event) => {
-     console.log(event.target);
+     console.log(event.target)
      let currentBookIndex = Number(event.target.dataset["index"]);
      let currentBookReadStatus = event.target.dataset["readStatus"];
      let currentReadButton = document.querySelector(`.read-status[data-index=\"${currentBookIndex}\"]`);
