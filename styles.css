@@ -54,14 +54,14 @@ h1 {
      grid-template-columns: 1fr 120px 120px;
 }
 
-.one-book-data >p {
+.one-book-data > p {
      overflow-x: auto;
      overflow-y: hidden;
      white-space: nowrap;
      scrollbar-width: none;
 }
 
-.one-book-data p::-webkit-scrollbar{
+.one-book-data p::-webkit-scrollbar {
      display: none;
 }
 
@@ -186,17 +186,21 @@ button[type="reset"]:active {
 
 .form-container {
      position: fixed;
-     top: 0;
-     left: 0;
      width: 100%;
      height: 100%;
      z-index: 1;
      opacity: 0;
      background-color: rgba(0, 0, 0, 0);
      pointer-events: none;
-     transition: opacity 0.5s cubic-bezier(0.2, 1, 0.8, 1);
 }
-
+@keyframes animate-form {
+     from {
+          transform: scale(0);
+     }
+     to {
+          transform: scale(1);
+     }
+}
 #form-container {
      top: 0;
      left: 0;
@@ -206,6 +210,7 @@ button[type="reset"]:active {
      opacity: 1;
      pointer-events: all;
      background-color: rgba(0, 0, 0, 0.7);
+     animation: animate-form 0.5s;
 }
 
 span,

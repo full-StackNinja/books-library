@@ -7,13 +7,45 @@ const form = document.querySelector("form");
 const booksContainer = document.querySelector(".books-container");
 
 const myBooks = [];
-// Constructor function for book objects...
-const Book = function (title, author, pages, isRead) {
-     this.title = title;
-     this.author = author;
-     this.pages = pages;
-     this.isRead = isRead;
-};
+// class for book objects...
+
+class Book {
+     constructor(title, author, pages, isRead) {
+          this.title = title;
+          this.author = author;
+          this.pages = pages;
+          this.isRead = isRead;
+     }
+     addBookToPage = function (bookIndex) {
+          let newBook = document.createElement("p");
+          let oneBookContainer = document.createElement("div");
+          let removeBook = document.createElement("button");
+          newBook.textContent = `${this.title} by ${this.author}, total pages ${this.pages}`;
+          oneBookContainer.classList.add("one-book-data");
+          oneBookContainer.setAttribute("data-index", bookIndex);
+          removeBook.textContent = "Remove";
+          removeBook.classList.add("remove-book");
+          removeBook.setAttribute("data-index", bookIndex);
+          oneBookContainer.appendChild(newBook);
+          oneBookContainer.append(oneBookData(this.isRead, bookIndex));
+          oneBookContainer.append(removeBook);
+          booksContainer.append(oneBookContainer);
+     };
+     addBookToLibrary = function () {
+          this.title = form.elements.title.value;
+          this.author = form.elements.author.value;
+          this.pages = form.elements.pages.value;
+          this.isRead = form.elements["book-read"].value;
+          let undefinedIndex = myBooks.indexOf(undefined);
+          if (undefinedIndex !== -1) {
+               myBooks[undefinedIndex] = this;
+               this.addBookToPage(undefinedIndex);
+          } else {
+               myBooks.push(this);
+               this.addBookToPage(myBooks.length - 1);
+          }
+     };
+}
 
 const oneBookData = function (readStatus, bookIndex) {
      let toggleReadStatus = document.createElement("button");
@@ -40,37 +72,6 @@ const oneBookData = function (readStatus, bookIndex) {
      toggleReadStatus.classList.add("read-status");
      toggleReadStatus.setAttribute("data-index", bookIndex);
      return toggleReadStatus;
-};
-
-Book.prototype.addBookToPage = function (bookIndex) {
-     let newBook = document.createElement("p");
-     let oneBookContainer = document.createElement("div");
-     let removeBook = document.createElement("button");
-     newBook.textContent = `${this.title} by ${this.author}, total pages ${this.pages}`;
-     oneBookContainer.classList.add("one-book-data");
-     oneBookContainer.setAttribute("data-index", bookIndex);
-     removeBook.textContent = "Remove";
-     removeBook.classList.add("remove-book");
-     removeBook.setAttribute("data-index", bookIndex);
-     oneBookContainer.appendChild(newBook);
-     oneBookContainer.append(oneBookData(this.isRead, bookIndex));
-     oneBookContainer.append(removeBook);
-     booksContainer.append(oneBookContainer);
-};
-
-Book.prototype.addBookToLibrary = function () {
-     this.title = form.elements.title.value;
-     this.author = form.elements.author.value;
-     this.pages = form.elements.pages.value;
-     this.isRead = form.elements["book-read"].value;
-     let undefinedIndex = myBooks.indexOf(undefined);
-     if (undefinedIndex !== -1) {
-          myBooks[undefinedIndex] = this;
-          this.addBookToPage(undefinedIndex);
-     } else {
-          myBooks.push(this);
-          this.addBookToPage(myBooks.length - 1);
-     }
 };
 
 addBookButton.addEventListener("click", () => {
