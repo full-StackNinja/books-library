@@ -1,3 +1,4 @@
+// Call relevant DOM elements...
 const addBookButton = document.querySelector(".add-book-button");
 const formContainer = document.querySelector(".form-container");
 const submitButton = document.querySelector("#submit-button");
@@ -6,12 +7,14 @@ const form = document.querySelector("form");
 const booksContainer = document.querySelector(".books-container");
 
 const myBooks = [];
+// Constructor function for book objects...
 const Book = function (title, author, pages, isRead) {
      this.title = title;
      this.author = author;
      this.pages = pages;
      this.isRead = isRead;
 };
+
 const oneBookData = function (readStatus, bookIndex) {
      let toggleReadStatus = document.createElement("button");
      let readText = document.createElement("span");
@@ -19,26 +22,21 @@ const oneBookData = function (readStatus, bookIndex) {
      if (readStatus === "yes") {
           readText.textContent = "Read";
           readTick.src = "./icons/done-tick.svg";
-          readTick.style.width = "22px";
-          toggleReadStatus.style.display = "inline-flex";
-          toggleReadStatus.style.alignItems = "center";
-          toggleReadStatus.style.justifyContent = "space-between";
-          toggleReadStatus.append(readText);
-          toggleReadStatus.append(readTick);
           toggleReadStatus.setAttribute("data-read-status", "yes");
           toggleReadStatus.style.backgroundColor = "#0f766e";
      } else if (readStatus == "no") {
           readText.textContent = "Unread";
           readTick.src = "./icons/cross-icon.svg";
-          readTick.style.width = "22px";
-          toggleReadStatus.style.display = "inline-flex";
-          toggleReadStatus.style.alignItems = "center";
-          toggleReadStatus.style.justifyContent = "space-between";
-          toggleReadStatus.append(readText);
-          toggleReadStatus.append(readTick);
           toggleReadStatus.style.backgroundColor = "#7f1d1d";
           toggleReadStatus.setAttribute("data-read-status", "no");
      }
+     readTick.style.width = "22px";
+     toggleReadStatus.style.display = "inline-flex";
+     toggleReadStatus.style.alignItems = "center";
+     toggleReadStatus.style.justifyContent = "space-between";
+     toggleReadStatus.append(readText);
+     toggleReadStatus.append(readTick);
+
      toggleReadStatus.classList.add("read-status");
      toggleReadStatus.setAttribute("data-index", bookIndex);
      return toggleReadStatus;
@@ -95,11 +93,11 @@ cancelButton.addEventListener("click", () => {
 });
 
 booksContainer.addEventListener("click", (event) => {
-     console.log(event.target)
+     console.log(event.target);
      let currentBookIndex = Number(event.target.dataset["index"]);
      let currentBookReadStatus = event.target.dataset["readStatus"];
      let currentReadButton = document.querySelector(`.read-status[data-index=\"${currentBookIndex}\"]`);
-     let updatedReadButton;
+     let updateReadButton;
      let currentEventClass = event.target.classList[0];
      if (currentEventClass === "remove-book") {
           myBooks[currentBookIndex] = undefined;
@@ -110,7 +108,7 @@ booksContainer.addEventListener("click", (event) => {
           } else if (currentBookReadStatus === "no") {
                currentBookReadStatus = "yes";
           }
-          updatedReadButton = oneBookData(currentBookReadStatus, currentBookIndex);
-          currentReadButton.replaceWith(updatedReadButton);
+          updateReadButton = oneBookData(currentBookReadStatus, currentBookIndex);
+          currentReadButton.replaceWith(updateReadButton);
      }
 });
