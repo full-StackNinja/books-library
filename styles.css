@@ -194,7 +194,6 @@ button[type="reset"]:active {
      background-color: rgba(0, 0, 0, 0);
      pointer-events: none;
 }
-
 @keyframes animate-form {
      from {
           transform: scale(0);
@@ -203,7 +202,6 @@ button[type="reset"]:active {
           transform: scale(1);
      }
 }
-
 #form-container {
      top: 0;
      left: 0;
@@ -214,6 +212,7 @@ button[type="reset"]:active {
      opacity: 1;
      pointer-events: all;
      background-color: rgba(0, 0, 0, 0.7);
+     animation: animate-form 0.5s;
 }
 
 span,
