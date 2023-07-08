@@ -60,6 +60,10 @@ h1 {
      white-space: nowrap;
 }
 
+.one-book-data p::-webkit-scrollbar{
+     display: none;
+}
+
 .remove-book {
      display: inline-block;
      padding: 5px 10px;
